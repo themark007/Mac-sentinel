@@ -1,0 +1,544 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.MacSentinel-arm64-apple-macosx16.0-release.module" : {
+      "executable" : "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "fileList" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/sources",
+      "importPath" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/MacSentinelApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Models/SystemModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/AppInventory.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ContainerScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/FileSizing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/InsightEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/NotificationService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/PreferencesStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ProcessSampler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ReportWriter.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/Shell.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/StorageScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemReaders.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemSampler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/Components.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/InsightsAlertsViews.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/MenuBarMonitorView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/SentinelIcon.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "MacSentinel",
+      "moduleOutputPath" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/Modules/MacSentinel.swiftmodule",
+      "objects" : [
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinelApp.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemModels.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/AppInventory.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContainerScanner.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/FileSizing.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightEngine.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/NotificationService.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/PreferencesStore.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ProcessSampler.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ReportWriter.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Shell.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/StorageScanner.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemReaders.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemSampler.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Components.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContentView.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightsAlertsViews.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MenuBarMonitorView.swift.o",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SentinelIcon.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-O",
+        "-j8",
+        "-DSWIFT_PACKAGE",
+        "-module-cache-path",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "MacSentinel_main",
+        "-swift-version",
+        "5",
+        "-F",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-sdk",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "build_a_mac_app_for_my"
+      ],
+      "outputFileMapPath" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinelApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/AppInventory.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContainerScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/FileSizing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/NotificationService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/PreferencesStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ProcessSampler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ReportWriter.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Shell.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/StorageScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemReaders.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemSampler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Components.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightsAlertsViews.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MenuBarMonitorView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SentinelIcon.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/Modules/MacSentinel.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/MacSentinelApp.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Models/SystemModels.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/AppInventory.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ContainerScanner.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/FileSizing.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/InsightEngine.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/NotificationService.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/PreferencesStore.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ProcessSampler.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ReportWriter.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/Shell.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/StorageScanner.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemReaders.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemSampler.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/Components.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/ContentView.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/InsightsAlertsViews.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/MenuBarMonitorView.swift",
+        "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/SentinelIcon.swift"
+      ],
+      "tempsPath" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build",
+      "wholeModuleOptimization" : true
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "MacSentinel" : [
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "-module-name",
+      "MacSentinel",
+      "-package-name",
+      "build_a_mac_app_for_my",
+      "-whole-module-optimization",
+      "-num-threads",
+      "8",
+      "-c",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/MacSentinelApp.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Models/SystemModels.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/AppInventory.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ContainerScanner.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/FileSizing.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/InsightEngine.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/NotificationService.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/PreferencesStore.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ProcessSampler.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ReportWriter.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/Shell.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/StorageScanner.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemReaders.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemSampler.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/Components.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/ContentView.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/InsightsAlertsViews.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/MenuBarMonitorView.swift",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/SentinelIcon.swift",
+      "-I",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-O",
+      "-j8",
+      "-DSWIFT_PACKAGE",
+      "-module-cache-path",
+      "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "MacSentinel_main",
+      "-swift-version",
+      "5",
+      "-F",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-sdk",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "build_a_mac_app_for_my",
+      "-driver-use-frontend-path",
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "MacSentinel" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "enableAllTraits" : false
+  },
+  "writeCommands" : {
+    "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/MacSentinelApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Models/SystemModels.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/AppInventory.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ContainerScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/FileSizing.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/InsightEngine.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/NotificationService.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/PreferencesStore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ProcessSampler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ReportWriter.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/Shell.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/StorageScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemReaders.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemSampler.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/Components.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/ContentView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/InsightsAlertsViews.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/MenuBarMonitorView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/SentinelIcon.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/sources"
+    },
+    "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/AppInventory.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Components.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContainerScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContentView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/FileSizing.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightEngine.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightsAlertsViews.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinelApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MenuBarMonitorView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/NotificationService.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/PreferencesStore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ProcessSampler.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ReportWriter.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SentinelIcon.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Shell.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/StorageScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemModels.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemReaders.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemSampler.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.product/Objects.LinkFileList"
+    },
+    "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/swift-version--1AB21518FC5DEDBE.txt"
+    }
+  }
+}

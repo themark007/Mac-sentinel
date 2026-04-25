@@ -1,0 +1,102 @@
+{
+  "": {
+    "dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinel.d",
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinel.o",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/master.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/MacSentinelApp.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinelApp.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinelApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MacSentinelApp.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Models/SystemModels.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemModels.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemModels~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemModels.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/AppInventory.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/AppInventory.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/AppInventory~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/AppInventory.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ContainerScanner.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContainerScanner.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContainerScanner~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContainerScanner.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/FileSizing.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/FileSizing.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/FileSizing~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/FileSizing.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/InsightEngine.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightEngine.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightEngine~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightEngine.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/NotificationService.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/NotificationService.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/NotificationService~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/NotificationService.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/PreferencesStore.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/PreferencesStore.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/PreferencesStore~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/PreferencesStore.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ProcessSampler.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ProcessSampler.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ProcessSampler~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ProcessSampler.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/ReportWriter.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ReportWriter.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ReportWriter~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ReportWriter.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/Shell.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Shell.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Shell~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Shell.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/StorageScanner.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/StorageScanner.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/StorageScanner~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/StorageScanner.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemReaders.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemReaders.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemReaders~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemReaders.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Services/SystemSampler.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemSampler.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemSampler~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SystemSampler.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/Components.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Components.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Components~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/Components.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/ContentView.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContentView.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/ContentView.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/InsightsAlertsViews.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightsAlertsViews.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightsAlertsViews~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/InsightsAlertsViews.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/MenuBarMonitorView.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MenuBarMonitorView.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MenuBarMonitorView~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/MenuBarMonitorView.swiftdeps"
+  },
+  "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/Sources/MacSentinel/Views/SentinelIcon.swift": {
+    "object": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SentinelIcon.swift.o",
+    "swiftmodule": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SentinelIcon~partial.swiftmodule",
+    "swift-dependencies": "/Users/markdsouza/Documents/Codex/2026-04-25/build-a-mac-app-for-my/.build/arm64-apple-macosx/release/MacSentinel.build/SentinelIcon.swiftdeps"
+  }
+}
