@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacSentinel — System Intelligence for Mac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c10;
+    --surface: #0d1117;
+    --surface2: #111820;
+    --border: rgba(255,255,255,0.07);
+    --accent-blue: #3de0f5;
+    --accent-green: #3dfca0;
+    --accent-orange: #f5a623;
+    --accent-red: #ff4d4d;
+    --accent-purple: #9b7ff5;
+    --text: #e8edf3;
+    --muted: #4a5568;
+    --muted2: #8899aa;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--accent-blue);
+    border-radius: 50%;
+    position: fixed; z-index: 9999;
+    pointer-events: none;
+    transform: translate(-50%,-50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: screen;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(61,224,245,0.4);
+    border-radius: 50%;
+    position: fixed; z-index: 9998;
+    pointer-events: none;
+    transform: translate(-50%,-50%);
+    transition: transform 0.12s ease-out, width 0.2s, height 0.2s;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(8,12,16,0.7);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 18px; font-weight: 800; letter-spacing: -0.5px;
+  }
+  .nav-logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-green));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .nav-links { display: flex; gap: 32px; align-items: center; }
+  .nav-links a {
+    color: var(--muted2); text-decoration: none; font-size: 14px; font-weight: 600;
+    letter-spacing: 0.5px; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    background: var(--accent-blue);
+    color: #000 !important;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 700 !important;
+    transition: all 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent-green) !important; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 120px 48px 80px;
+    position: relative; overflow: hidden; text-align: center;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(61,224,245,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(61,252,160,0.07) 0%, transparent 50%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(155,127,245,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(61,224,245,0.08);
+    border: 1px solid rgba(61,224,245,0.2);
+    border-radius: 100px;
+    padding: 6px 16px; margin-bottom: 32px;
+    font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--accent-blue);
+    animation: fadeInDown 0.8s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent-green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+  }
+
+  h1 {
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -3px;
+    animation: fadeInUp 0.9s ease 0.1s both;
+  }
+  h1 .line1 { display: block; }
+  h1 .line2 {
+    display: block;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    margin-top: 24px; max-width: 560px;
+    font-size: 18px; line-height: 1.6; color: var(--muted2);
+    animation: fadeInUp 0.9s ease 0.2s both;
+  }
+
+  .hero-actions {
+    margin-top: 40px;
+    display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center;
+    animation: fadeInUp 0.9s ease 0.3s both;
+  }
+  .btn-primary {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--accent-blue); color: #000;
+    padding: 14px 28px; border-radius: 12px;
+    font-size: 15px; font-weight: 800; text-decoration: none; letter-spacing: 0.3px;
+    transition: all 0.25s; border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: #5aeeff; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(61,224,245,0.35); }
+  .btn-ghost {
+    display: flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--text);
+    padding: 14px 28px; border-radius: 12px;
+    font-size: 15px; font-weight: 700; text-decoration: none;
+    border: 1px solid var(--border); transition: all 0.25s; cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+  .hero-meta {
+    margin-top: 24px;
+    font-size: 13px; color: var(--muted); letter-spacing: 0.5px;
+    animation: fadeInUp 0.9s ease 0.4s both;
+  }
+
+  /* FLOATING MAC 3D SCENE */
+  .mac-scene {
+    position: relative; width: 100%; max-width: 900px; margin: 60px auto 0;
+    animation: fadeInUp 1s ease 0.5s both;
+  }
+
+  .mac-canvas {
+    width: 100%; aspect-ratio: 16/9;
+    position: relative; perspective: 1200px;
+  }
+
+  /* MacBook Air CSS 3D */
+  .macbook-wrapper {
+    position: relative; width: 580px; margin: 0 auto;
+    transform-style: preserve-3d;
+    animation: floatMac 6s ease-in-out infinite;
+  }
+  @keyframes floatMac {
+    0%, 100% { transform: rotateX(6deg) rotateY(-8deg) translateY(0); }
+    33% { transform: rotateX(4deg) rotateY(-5deg) translateY(-12px); }
+    66% { transform: rotateX(8deg) rotateY(-10deg) translateY(-6px); }
+  }
+
+  .macbook-lid {
+    width: 100%; aspect-ratio: 16/10;
+    background: linear-gradient(160deg, #1a2030 0%, #0d1117 60%, #0a0e14 100%);
+    border-radius: 14px 14px 4px 4px;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    position: relative; overflow: hidden;
+    box-shadow: 0 0 80px rgba(61,224,245,0.08), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .macbook-screen {
+    position: absolute; inset: 8px;
+    border-radius: 8px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  .screen-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(61,224,245,0.06), transparent 60%);
+  }
+
+  /* Mini app UI inside screen */
+  .screen-ui {
+    padding: 10px;
+    height: 100%;
+    display: flex; gap: 8px;
+  }
+  .screen-sidebar {
+    width: 90px; background: rgba(255,255,255,0.03);
+    border-radius: 6px; padding: 8px 6px;
+  }
+  .screen-item {
+    height: 8px; border-radius: 4px; margin-bottom: 6px;
+    background: rgba(255,255,255,0.06);
+  }
+  .screen-item.active { background: rgba(61,224,245,0.25); }
+  .screen-main { flex: 1; display: flex; flex-direction: column; gap: 6px; }
+  .screen-cards { display: flex; gap: 6px; }
+  .screen-card {
+    flex: 1; height: 50px; border-radius: 6px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    padding: 6px;
+  }
+  .screen-card-val {
+    font-size: 10px; font-weight: 700;
+    font-family: 'Space Mono', monospace;
+  }
+  .blue { color: var(--accent-blue); }
+  .green { color: var(--accent-green); }
+  .orange { color: var(--accent-orange); }
+  .red { color: var(--accent-red); }
+  .screen-chart {
+    flex: 1; border-radius: 6px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    padding: 6px; display: flex; align-items: flex-end; gap: 2px;
+  }
+  .chart-bar {
+    flex: 1; border-radius: 2px 2px 0 0; min-height: 4px;
+    background: rgba(61,224,245,0.3);
+    animation: barAnim 3s ease-in-out infinite;
+  }
+  .chart-bar:nth-child(2n) { background: rgba(61,252,160,0.25); animation-delay: 0.3s; }
+  .chart-bar:nth-child(3n) { animation-delay: 0.6s; }
+  @keyframes barAnim {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+
+  .macbook-base {
+    width: 100%; height: 20px;
+    background: linear-gradient(180deg, #1e2535 0%, #161c28 100%);
+    border-radius: 0 0 6px 6px;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-top: none;
+    position: relative;
+  }
+  .macbook-base::after {
+    content: '';
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 60px; height: 4px;
+    background: rgba(255,255,255,0.06); border-radius: 4px 4px 0 0;
+  }
+
+  /* FLOATING MINI MACS */
+  .floating-macs {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .float-mac {
+    position: absolute;
+    opacity: 0.15;
+    animation: orbit 12s ease-in-out infinite;
+  }
+  .float-mac:nth-child(1) { top: 10%; left: -5%; animation-delay: 0s; animation-duration: 10s; }
+  .float-mac:nth-child(2) { top: 20%; right: -3%; animation-delay: -4s; animation-duration: 14s; }
+  .float-mac:nth-child(3) { bottom: 5%; left: 5%; animation-delay: -8s; animation-duration: 11s; }
+  @keyframes orbit {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  /* STATS TICKER */
+  .stats-row {
+    display: flex; gap: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 80px 0 0; overflow: hidden;
+    background: rgba(255,255,255,0.02);
+  }
+  .stat-item {
+    flex: 1; padding: 20px 32px; text-align: center;
+    border-right: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-item:hover { background: rgba(61,224,245,0.04); }
+  .stat-num {
+    font-size: 32px; font-weight: 800; letter-spacing: -1px;
+    font-family: 'Space Mono', monospace;
+  }
+  .stat-label { font-size: 12px; color: var(--muted2); margin-top: 4px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 120px 48px; position: relative; }
+
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--accent-blue); margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 800; line-height: 1.1; letter-spacing: -2px;
+    max-width: 700px;
+  }
+  .section-sub {
+    margin-top: 16px; max-width: 560px;
+    font-size: 17px; line-height: 1.65; color: var(--muted2);
+  }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    margin-top: 64px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+  .feature-card {
+    background: var(--surface); padding: 40px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+    transform: scaleX(0); transition: transform 0.4s;
+  }
+  .feature-card:hover { background: var(--surface2); }
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-icon {
+    width: 48px; height: 48px; border-radius: 12px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+  }
+  .feature-title { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .feature-desc { font-size: 14px; color: var(--muted2); line-height: 1.6; }
+  .feature-tag {
+    display: inline-block; margin-top: 16px;
+    padding: 4px 10px; border-radius: 4px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* APP PREVIEW */
+  .preview-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .preview-container {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .preview-text {}
+  .preview-screenshot {
+    position: relative;
+  }
+  .screenshot-frame {
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04);
+    transform: perspective(1000px) rotateY(-8deg) rotateX(3deg);
+    transition: transform 0.5s;
+  }
+  .screenshot-frame:hover { transform: perspective(1000px) rotateY(-2deg) rotateX(1deg); }
+
+  /* LIVE METRICS UI */
+  .metrics-ui {
+    padding: 20px;
+  }
+  .metrics-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+  }
+  .metrics-title { font-size: 14px; font-weight: 700; }
+  .live-badge {
+    font-size: 10px; color: var(--accent-green); font-weight: 700;
+    display: flex; align-items: center; gap: 4px; font-family: 'Space Mono', monospace;
+  }
+  .metrics-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+  .metric-card {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px;
+  }
+  .metric-label { font-size: 11px; color: var(--muted2); margin-bottom: 6px; letter-spacing: 0.5px; }
+  .metric-val {
+    font-size: 24px; font-weight: 800; font-family: 'Space Mono', monospace;
+    line-height: 1;
+  }
+  .metric-bar { height: 3px; border-radius: 2px; margin-top: 8px; background: var(--border); }
+  .metric-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+  .metric-fill.cpu { background: var(--accent-blue); width: 22%; }
+  .metric-fill.mem { background: var(--accent-red); width: 96%; animation: memPulse 3s ease infinite; }
+  .metric-fill.ssd { background: var(--accent-orange); width: 93%; }
+  .metric-fill.flags { background: var(--accent-green); width: 0%; }
+  @keyframes memPulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+
+  .alerts-list { display: flex; flex-direction: column; gap: 8px; }
+  .alert-item {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 12px 14px;
+    border-left: 3px solid;
+  }
+  .alert-item.warn { border-left-color: var(--accent-orange); }
+  .alert-item.crit { border-left-color: var(--accent-red); }
+  .alert-name { font-size: 13px; font-weight: 600; }
+  .alert-detail { font-size: 11px; color: var(--muted2); margin-top: 2px; }
+  .alert-time { font-size: 11px; color: var(--muted); font-family: 'Space Mono', monospace; }
+
+  /* SCROLLING FEATURE TABS */
+  .tabs-section { max-width: 1100px; margin: 0 auto; }
+  .tabs-nav {
+    display: flex; gap: 4px;
+    background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+    border-radius: 12px; padding: 4px; margin-bottom: 32px;
+    width: fit-content;
+  }
+  .tab-btn {
+    padding: 10px 20px; border-radius: 8px;
+    font-size: 13px; font-weight: 700; border: none;
+    background: transparent; color: var(--muted2); cursor: pointer; transition: all 0.2s;
+  }
+  .tab-btn.active { background: var(--surface2); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.4); }
+
+  /* PROCESS LIST UI */
+  .process-ui { padding: 20px; }
+  .process-header {
+    display: flex; gap: 8px; margin-bottom: 12px;
+  }
+  .sort-btn {
+    padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 700;
+    border: 1px solid var(--border); background: transparent; color: var(--muted2);
+    cursor: pointer;
+  }
+  .sort-btn.active { background: var(--accent-blue); color: #000; border-color: var(--accent-blue); }
+  .process-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    font-size: 12px;
+  }
+  .proc-name { font-weight: 600; }
+  .proc-path { font-size: 10px; color: var(--muted); margin-top: 2px; font-family: 'Space Mono', monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+  .proc-stats { display: flex; gap: 20px; color: var(--muted2); font-family: 'Space Mono', monospace; font-size: 11px; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* MAC MODELS SECTION */
+  .macs-section {
+    text-align: center;
+    background: linear-gradient(180deg, transparent, rgba(61,224,245,0.03) 50%, transparent);
+  }
+  .macs-scene {
+    position: relative; height: 300px; margin: 60px auto;
+    display: flex; align-items: flex-end; justify-content: center; gap: 60px;
+  }
+
+  /* MacBook Pro CSS */
+  .css-mac { display: flex; flex-direction: column; align-items: center; }
+  .css-mac-label {
+    margin-top: 12px; font-size: 11px; color: var(--muted2);
+    font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  }
+
+  .mbp { animation: floatA 7s ease-in-out infinite; }
+  .mba { animation: floatB 8s ease-in-out infinite; animation-delay: -2s; }
+  .mm { animation: floatC 6s ease-in-out infinite; animation-delay: -4s; }
+  @keyframes floatA { 0%,100%{transform:translateY(0) rotate(-3deg)} 50%{transform:translateY(-18px) rotate(2deg)} }
+  @keyframes floatB { 0%,100%{transform:translateY(0) rotate(2deg)} 50%{transform:translateY(-22px) rotate(-2deg)} }
+  @keyframes floatC { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-14px) rotate(3deg)} }
+
+  /* MacBook Pro shape */
+  .mbp-lid {
+    width: 200px; height: 130px;
+    background: linear-gradient(160deg, #2a3040, #111820);
+    border-radius: 12px 12px 3px 3px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(61,224,245,0.06);
+  }
+  .mbp-lid::after {
+    content: '';
+    position: absolute; inset: 5px;
+    border-radius: 7px;
+    background: var(--bg);
+    box-shadow: inset 0 0 30px rgba(61,224,245,0.05);
+  }
+  .mbp-logo {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 2; font-size: 28px; opacity: 0.2;
+  }
+  .mbp-base {
+    width: 210px; height: 12px;
+    background: linear-gradient(180deg, #1e2535, #141924);
+    border-radius: 0 0 5px 5px;
+    border: 1.5px solid rgba(255,255,255,0.07); border-top: none;
+  }
+
+  /* MacBook Air (thinner) */
+  .mba-lid {
+    width: 220px; height: 138px;
+    background: linear-gradient(160deg, #2a3040, #111820);
+    border-radius: 14px 14px 3px 3px;
+    border: 1px solid rgba(255,255,255,0.09);
+    position: relative; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(61,252,160,0.06);
+  }
+  .mba-lid::after {
+    content: '';
+    position: absolute; inset: 5px;
+    border-radius: 8px;
+    background: var(--bg);
+    box-shadow: inset 0 0 30px rgba(61,252,160,0.05);
+  }
+  .mba-logo {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 2; font-size: 28px; opacity: 0.15;
+  }
+  .mba-base {
+    width: 224px; height: 9px;
+    background: linear-gradient(180deg, #1e2535, #141924);
+    border-radius: 0 0 5px 5px;
+    border: 1px solid rgba(255,255,255,0.06); border-top: none;
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
+  }
+
+  /* Mac mini */
+  .mac-mini-body {
+    width: 100px; height: 20px;
+    background: linear-gradient(180deg, #2a3040, #1a2030);
+    border-radius: 6px;
+    border: 1.5px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 20px rgba(155,127,245,0.08);
+    position: relative;
+  }
+  .mac-mini-body::before {
+    content: '';
+    position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+    width: 8px; height: 8px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 6px rgba(61,224,245,0.5);
+  }
+  .mac-mini-base {
+    width: 110px; height: 10px;
+    background: linear-gradient(180deg, #141924, #0d1117);
+    border-radius: 0 0 5px 5px;
+    border: 1.5px solid rgba(255,255,255,0.06); border-top: none;
+  }
+  .mac-mini-screen-small {
+    width: 60px; height: 80px;
+    background: linear-gradient(160deg, #1a2030, #0d1117);
+    border-radius: 6px; border: 1.5px solid rgba(255,255,255,0.08);
+    margin-bottom: 8px;
+    box-shadow: 0 0 20px rgba(155,127,245,0.1);
+    position: relative;
+  }
+  .mac-mini-screen-small::after {
+    content: ''; position: absolute; inset: 4px;
+    border-radius: 3px; background: var(--bg);
+    box-shadow: inset 0 0 12px rgba(155,127,245,0.1);
+  }
+
+  /* PARTICLE FIELD */
+  #particles { position: absolute; inset: 0; pointer-events: none; }
+
+  /* TESTIMONIALS / REVIEWS */
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    margin-top: 60px;
+  }
+  .review-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 28px;
+    transition: all 0.3s;
+  }
+  .review-card:hover { border-color: rgba(61,224,245,0.2); transform: translateY(-4px); }
+  .stars { color: var(--accent-orange); margin-bottom: 12px; font-size: 14px; }
+  .review-text { font-size: 14px; color: var(--muted2); line-height: 1.65; }
+  .reviewer { margin-top: 16px; display: flex; align-items: center; gap: 10px; }
+  .reviewer-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; color: #000;
+  }
+  .reviewer-name { font-size: 13px; font-weight: 700; }
+  .reviewer-role { font-size: 11px; color: var(--muted); }
+
+  /* CTA SECTION */
+  .cta-section {
+    text-align: center;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(61,224,245,0.08) 0%, transparent 70%);
+    border-top: 1px solid var(--border);
+  }
+  .cta-title { font-size: clamp(40px, 6vw, 72px); font-weight: 800; letter-spacing: -2px; }
+  .cta-sub { margin-top: 16px; font-size: 18px; color: var(--muted2); max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-actions { margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .cta-note { margin-top: 16px; font-size: 13px; color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    padding: 48px;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-logo { font-size: 16px; font-weight: 800; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy { font-size: 12px; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--muted); border-radius: 4px; }
+
+  /* GLOW ORBS */
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none; z-index: 0;
+  }
+  .orb-1 { width: 400px; height: 400px; background: rgba(61,224,245,0.06); top: -100px; right: -100px; }
+  .orb-2 { width: 300px; height: 300px; background: rgba(61,252,160,0.05); bottom: 0; left: -50px; }
+
+  /* PARALLAX TEXT */
+  .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .marquee {
+    display: flex; gap: 48px; white-space: nowrap;
+    animation: marquee 20s linear infinite;
+    font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .marquee span { color: var(--accent-blue); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    section { padding: 80px 24px; }
+    h1 { letter-spacing: -2px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .preview-container { grid-template-columns: 1fr; gap: 40px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .macs-scene { gap: 30px; }
+    .mba-lid { width: 160px; height: 100px; }
+    .mbp-lid { width: 150px; height: 96px; }
+    .stats-row { flex-wrap: wrap; }
+    .stat-item { min-width: 50%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">⚡</div>
+    MacSentinel
+  </div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#preview">Preview</a>
+    <a href="#macs">Compatibility</a>
+    <a href="https://github.com/themark007/Mac-sentinel" target="_blank">GitHub</a>
+    <a href="https://github.com/themark007/Mac-sentinel/releases/download/1.01/MacSentinel.dmg" class="nav-cta">Download</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    Live System Intelligence
+  </div>
+
+  <h1>
+    <span class="line1">Your Mac.</span>
+    <span class="line2">Under Control.</span>
+  </h1>
+
+  <p class="hero-sub">
+    MacSentinel gives you real-time visibility into every process, every byte of memory, every storage bucket — all in one beautiful dark dashboard.
+  </p>
+
+  <div class="hero-actions">
+    <a href="https://github.com/themark007/Mac-sentinel/releases/download/1.01/MacSentinel.dmg" class="btn-primary">
+      ⬇ Download Free
+    </a>
+    <a href="https://github.com/themark007/Mac-sentinel" target="_blank" class="btn-ghost">
+      ⭐ View on GitHub
+    </a>
+  </div>
+
+  <p class="hero-meta">macOS 13+ · Free & Open Source · No account needed</p>
+
+  <!-- MAC 3D SCENE -->
+  <div class="mac-scene">
+    <div class="mac-canvas">
+      <div class="macbook-wrapper">
+        <div class="macbook-lid">
+          <div class="macbook-screen">
+            <div class="screen-glow"></div>
+            <div class="screen-ui">
+              <div class="screen-sidebar">
+                <div class="screen-item active" style="width:70%"></div>
+                <div class="screen-item" style="width:60%"></div>
+                <div class="screen-item" style="width:80%"></div>
+                <div class="screen-item" style="width:65%"></div>
+                <div class="screen-item" style="width:55%"></div>
+              </div>
+              <div class="screen-main">
+                <div class="screen-cards">
+                  <div class="screen-card">
+                    <div class="screen-card-val blue" style="font-size:7px">CPU</div>
+                    <div class="screen-card-val blue">22%</div>
+                  </div>
+                  <div class="screen-card">
+                    <div class="screen-card-val red" style="font-size:7px">RAM</div>
+                    <div class="screen-card-val red">96%</div>
+                  </div>
+                  <div class="screen-card">
+                    <div class="screen-card-val orange" style="font-size:7px">SSD</div>
+                    <div class="screen-card-val orange">93%</div>
+                  </div>
+                </div>
+                <div class="screen-chart">
+                  <div class="chart-bar" style="height:40%"></div>
+                  <div class="chart-bar" style="height:60%"></div>
+                  <div class="chart-bar" style="height:45%"></div>
+                  <div class="chart-bar" style="height:70%"></div>
+                  <div class="chart-bar" style="height:55%"></div>
+                  <div class="chart-bar" style="height:80%"></div>
+                  <div class="chart-bar" style="height:65%"></div>
+                  <div class="chart-bar" style="height:50%"></div>
+                  <div class="chart-bar" style="height:75%"></div>
+                  <div class="chart-bar" style="height:60%"></div>
+                  <div class="chart-bar" style="height:45%"></div>
+                  <div class="chart-bar" style="height:85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="macbook-base"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="stats-row" style="width:100%;margin-top:64px">
+    <div class="stat-item">
+      <div class="stat-num blue">160+</div>
+      <div class="stat-label">Processes Tracked</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num green">2s</div>
+      <div class="stat-label">Sample Interval</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num orange">Real-time</div>
+      <div class="stat-label">Alert Engine</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" style="color:var(--accent-purple)">0</div>
+      <div class="stat-label">Ads. Zero.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>CPU Monitor</span> · Process Inspector · <span>Memory Trends</span> · Alert Engine · <span>SSD Health</span> · Container Watch · <span>Storage Buckets</span> · Live Sampler · <span>CPU Monitor</span> · Process Inspector · <span>Memory Trends</span> · Alert Engine · <span>SSD Health</span> · Container Watch · <span>Storage Buckets</span> · Live Sampler ·&nbsp;
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="reveal">
+    <div class="section-label">What it does</div>
+    <h2 class="section-title">Everything happening inside your Mac — visible.</h2>
+    <p class="section-sub">MacSentinel is the system monitor that actually tells you what's going on, not just that your fans are spinning.</p>
+  </div>
+
+  <div class="features-grid" style="max-width:1100px;margin:64px auto 0">
+    <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-icon">🖥</div>
+      <div class="feature-title">CPU Intelligence</div>
+      <div class="feature-desc">Track total CPU usage, per-process breakdowns, user vs system time, and trend graphs updated every 2 seconds.</div>
+      <div class="feature-tag" style="background:rgba(61,224,245,0.08);color:var(--accent-blue)">Live sampling</div>
+    </div>
+    <div class="feature-card reveal reveal-delay-2">
+      <div class="feature-icon">🔴</div>
+      <div class="feature-title">Memory Deep Dive</div>
+      <div class="feature-desc">See App, Wired, Compressed, and Free memory broken down. Know exactly what's eating your RAM before your Mac starts swapping.</div>
+      <div class="feature-tag" style="background:rgba(255,77,77,0.08);color:var(--accent-red)">Critical alerts</div>
+    </div>
+    <div class="feature-card reveal reveal-delay-3">
+      <div class="feature-icon">💾</div>
+      <div class="feature-title">Storage Buckets</div>
+      <div class="feature-desc">Scan App Containers, App Support, Applications and more. Find out which folders are hogging your precious SSD space.</div>
+      <div class="feature-tag" style="background:rgba(245,166,35,0.08);color:var(--accent-orange)">93% threshold</div>
+    </div>
+    <div class="feature-card reveal reveal-delay-1">
+      <div class="feature-icon">⚡</div>
+      <div class="feature-title">Alert Engine</div>
+      <div class="feature-desc">Set guardrails for CPU, RAM, SSD and runaway processes. Get native macOS notifications when thresholds are tripped.</div>
+      <div class="feature-tag" style="background:rgba(155,127,245,0.08);color:var(--accent-purple)">Configurable</div>
+    </div>
+    <div class="feature-card reveal reveal-delay-2">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">Process Inspector</div>
+      <div class="feature-desc">160+ running processes listed with PID, CPU, RAM, thread count and state. Search, sort, and terminate with one click.</div>
+      <div class="feature-tag" style="background:rgba(61,224,245,0.08);color:var(--accent-blue)">Kill runaway</div>
+    </div>
+    <div class="feature-card reveal reveal-delay-3">
+      <div class="feature-icon">📦</div>
+      <div class="feature-title">Snapshot & Reports</div>
+      <div class="feature-desc">Export your system state to JSON or generate a Markdown health report. Perfect for debugging or sharing with your team.</div>
+      <div class="feature-tag" style="background:rgba(61,252,160,0.08);color:var(--accent-green)">Export ready</div>
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<section id="preview" class="preview-section">
+  <div class="preview-container" style="max-width:1100px;margin:0 auto">
+    <div class="preview-text reveal-left">
+      <div class="section-label">Live Dashboard</div>
+      <h2 class="section-title" style="font-size:clamp(30px,4vw,48px)">Real-time metrics. No fluff.</h2>
+      <p class="section-sub">MacSentinel updates every 2 seconds. Watch your CPU spike during a build. See memory compress in real time. Get alerted the moment storage hits 90%.</p>
+      <div style="margin-top:32px;display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px">
+          <span style="color:var(--accent-green)">✓</span>
+          <span>CPU trend graph with user/system/idle breakdown</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px">
+          <span style="color:var(--accent-green)">✓</span>
+          <span>Memory pressure with 4-category breakdown</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px">
+          <span style="color:var(--accent-green)">✓</span>
+          <span>Big Storage Buckets sorted by size</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;font-size:14px">
+          <span style="color:var(--accent-green)">✓</span>
+          <span>Pressure List — flagged hot processes</span>
+        </div>
+      </div>
+    </div>
+    <div class="preview-screenshot reveal-right">
+      <div class="screenshot-frame">
+        <div class="metrics-ui">
+          <div class="metrics-header">
+            <div class="metrics-title">Overview</div>
+            <div class="live-badge"><span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent-green);animation:pulse 2s infinite;margin-right:4px"></span>LIVE</div>
+          </div>
+          <div class="metrics-cards">
+            <div class="metric-card">
+              <div class="metric-label">CPU</div>
+              <div class="metric-val blue" id="cpu-val">22%</div>
+              <div class="metric-bar"><div class="metric-fill cpu" id="cpu-bar"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Memory</div>
+              <div class="metric-val red">96%</div>
+              <div class="metric-bar"><div class="metric-fill mem"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Storage</div>
+              <div class="metric-val orange">93%</div>
+              <div class="metric-bar"><div class="metric-fill ssd"></div></div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Flags</div>
+              <div class="metric-val green">0</div>
+              <div class="metric-bar"><div class="metric-fill flags"></div></div>
+            </div>
+          </div>
+          <div class="alerts-list">
+            <div class="alert-item crit">
+              <div>
+                <div class="alert-name">Storage above 90%</div>
+                <div class="alert-detail">17.79 GB free on Macintosh HD</div>
+              </div>
+              <div class="alert-time">2:16 PM</div>
+            </div>
+            <div class="alert-item warn">
+              <div>
+                <div class="alert-name">Memory above 88%</div>
+                <div class="alert-detail">8.31 GB of 8.59 GB in use</div>
+              </div>
+              <div class="alert-time">2:16 PM</div>
+            </div>
+            <div class="alert-item crit">
+              <div>
+                <div class="alert-name">Storage above 90%</div>
+                <div class="alert-detail">17.79 GB free on Macintosh HD</div>
+              </div>
+              <div class="alert-time">2:06 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAC MODELS (3D SCENE) -->
+<section id="macs" class="macs-section">
+  <div class="reveal">
+    <div class="section-label">Compatibility</div>
+    <h2 class="section-title" style="margin:0 auto;text-align:center">Built for every Mac.</h2>
+    <p class="section-sub" style="margin:16px auto;text-align:center">MacBook Air · MacBook Pro · Mac mini · iMac · Mac Studio · Mac Pro</p>
+  </div>
+
+  <div class="macs-scene reveal">
+    <!-- MacBook Pro -->
+    <div class="css-mac mbp">
+      <div class="mbp-lid">
+        <div class="mbp-logo">🍎</div>
+      </div>
+      <div class="mbp-base"></div>
+      <div class="css-mac-label">MacBook Pro</div>
+    </div>
+
+    <!-- MacBook Air -->
+    <div class="css-mac mba" style="margin-bottom:16px">
+      <div class="mba-lid">
+        <div class="mba-logo">🍎</div>
+      </div>
+      <div class="mba-base"></div>
+      <div class="css-mac-label">MacBook Air</div>
+    </div>
+
+    <!-- Mac mini -->
+    <div class="css-mac mm">
+      <div class="mac-mini-screen-small"></div>
+      <div class="mac-mini-body"></div>
+      <div class="mac-mini-base"></div>
+      <div class="css-mac-label">Mac mini</div>
+    </div>
+  </div>
+
+  <p class="reveal" style="text-align:center;font-size:14px;color:var(--muted2);max-width:500px;margin:0 auto">
+    Requires macOS Ventura 13.0 or later. Apple Silicon and Intel Macs supported.
+  </p>
+</section>
+
+<!-- REVIEWS -->
+<section>
+  <div class="reveal" style="text-align:center">
+    <div class="section-label">Developer Love</div>
+    <h2 class="section-title" style="margin:0 auto;text-align:center">From Mac power users.</h2>
+  </div>
+  <div class="reviews-grid" style="max-width:1000px;margin:60px auto 0">
+    <div class="review-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Finally a monitor that actually shows me what's compressed in memory. The alert engine saved me from an OOM crash mid-deploy."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">AK</div>
+        <div>
+          <div class="reviewer-name">Alex K.</div>
+          <div class="reviewer-role">Backend Engineer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"The storage bucket view alone is worth it. Found 60 GB of container junk I had no idea about. Dark theme is 🔥"</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SL</div>
+        <div>
+          <div class="reviewer-name">Sam L.</div>
+          <div class="reviewer-role">iOS Developer</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Replaced Activity Monitor entirely. Process inspector with kill button + the live 2-second sampling is everything I needed."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">MC</div>
+        <div>
+          <div class="reviewer-name">Maria C.</div>
+          <div class="reviewer-role">DevOps · MacBook Pro M3</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="reveal">
+    <h2 class="cta-title">Take control of<br><span style="background:linear-gradient(90deg,var(--accent-blue),var(--accent-green));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">your machine.</span></h2>
+    <p class="cta-sub">Free download. No subscription. No telemetry. Just pure system intelligence for your Mac.</p>
+    <div class="cta-actions">
+      <a href="https://github.com/themark007/Mac-sentinel/releases/download/1.01/MacSentinel.dmg" class="btn-primary" style="font-size:17px;padding:16px 36px">
+        ⬇ Download MacSentinel
+      </a>
+      <a href="https://github.com/themark007/Mac-sentinel" target="_blank" class="btn-ghost" style="font-size:17px;padding:16px 36px">
+        View Source
+      </a>
+    </div>
+    <p class="cta-note">macOS 13+ · Free & Open Source · ~2MB</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">⚡ MacSentinel</div>
+  <div class="footer-links">
+    <a href="https://github.com/themark007/Mac-sentinel" target="_blank">GitHub</a>
+    <a href="https://github.com/themark007/Mac-sentinel/blob/master/PRIVACY.md" target="_blank">Privacy</a>
+    <a href="https://github.com/themark007/Mac-sentinel/releases" target="_blank">Releases</a>
+  </div>
+  <div class="footer-copy">Made for Mac. Built in Swift.</div>
+</footer>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  rx += (mx - rx) * 0.15;
+  ry += (my - ry) * 0.15;
+  cursor.style.left = mx + 'px';
+  cursor.style.top = my + 'px';
+  cursorRing.style.left = rx + 'px';
+  cursorRing.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.style.width = '20px'; cursor.style.height = '20px';
+    cursorRing.style.width = '50px'; cursorRing.style.height = '50px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursor.style.width = '12px'; cursor.style.height = '12px';
+    cursorRing.style.width = '36px'; cursorRing.style.height = '36px';
+  });
+});
+
+// PARTICLES
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+function resizeCanvas() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+for (let i = 0; i < 80; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    r: Math.random() * 1.5 + 0.5,
+    a: Math.random() * 0.4 + 0.1,
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let i = 0; i < particles.length; i++) {
+    const p = particles[i];
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(61,224,245,${p.a})`;
+    ctx.fill();
+    for (let j = i + 1; j < particles.length; j++) {
+      const q = particles[j];
+      const dx = p.x - q.x, dy = p.y - q.y;
+      const d = Math.sqrt(dx * dx + dy * dy);
+      if (d < 100) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(q.x, q.y);
+        ctx.strokeStyle = `rgba(61,224,245,${0.04 * (1 - d / 100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// SCROLL REVEAL
+const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+reveals.forEach(el => observer.observe(el));
+
+// NAV SCROLL
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.style.background = window.scrollY > 60
+    ? 'rgba(8,12,16,0.95)'
+    : 'rgba(8,12,16,0.7)';
+});
+
+// ANIMATE CPU IN PREVIEW
+function animateCPU() {
+  const val = Math.floor(15 + Math.random() * 25);
+  const el = document.getElementById('cpu-val');
+  const bar = document.getElementById('cpu-bar');
+  if (el) { el.textContent = val + '%'; bar.style.width = val + '%'; }
+  setTimeout(animateCPU, 2000 + Math.random() * 1000);
+}
+setTimeout(animateCPU, 3000);
+
+// PARALLAX on scroll
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  document.querySelectorAll('.macbook-wrapper').forEach(el => {
+    el.style.transform = `translateY(${scrollY * 0.05}px)`;
+  });
+});
+</script>
+</body>
+</html>
